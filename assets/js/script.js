@@ -1,432 +1,278 @@
-// Game Data
-const gameData = {
-    mlbb: {
+// Data Games
+const gamesData = [
+    {
+        id: 1,
         name: "Mobile Legends",
-        currency: "Diamond",
         icon: "fas fa-diamond",
         color: "#ff6b6b",
-        nominals: [
-            { amount: "86 Diamond", price: 20000, bonus: "" },
-            { amount: "172 Diamond", price: 40000, bonus: "+14 Diamond" },
-            { amount: "257 Diamond", price: 60000, bonus: "+21 Diamond" },
-            { amount: "344 Diamond", price: 80000, bonus: "+28 Diamond" },
-            { amount: "429 Diamond", price: 100000, bonus: "+35 Diamond" },
-            { amount: "514 Diamond", price: 120000, bonus: "+42 Diamond" }
-        ]
+        description: "Diamond MLBB",
+        price: "Mulai Rp 5.000"
     },
-    freefire: {
+    {
+        id: 2,
         name: "Free Fire",
-        currency: "Diamond",
         icon: "fas fa-fire",
         color: "#4ecdc4",
-        nominals: [
-            { amount: "70 Diamond", price: 10000, bonus: "" },
-            { amount: "140 Diamond", price: 20000, bonus: "+10 Diamond" },
-            { amount: "210 Diamond", price: 30000, bonus: "+15 Diamond" },
-            { amount: "355 Diamond", price: 50000, bonus: "+25 Diamond" },
-            { amount: "720 Diamond", price: 100000, bonus: "+50 Diamond" },
-            { amount: "1450 Diamond", price: 200000, bonus: "+100 Diamond" }
-        ]
+        description: "Diamond FF",
+        price: "Mulai Rp 2.500"
     },
-    pubg: {
+    {
+        id: 3,
         name: "PUBG Mobile",
-        currency: "UC",
         icon: "fas fa-crosshairs",
         color: "#45b7d1",
-        nominals: [
-            { amount: "60 UC", price: 15000, bonus: "" },
-            { amount: "325 UC", price: 80000, bonus: "+25 UC" },
-            { amount: "660 UC", price: 160000, bonus: "+60 UC" },
-            { amount: "1800 UC", price: 400000, bonus: "+200 UC" },
-            { amount: "3850 UC", price: 800000, bonus: "+450 UC" },
-            { amount: "8100 UC", price: 1600000, bonus: "+1000 UC" }
-        ]
+        description: "UC PUBG",
+        price: "Mulai Rp 5.000"
     },
-    genshin: {
+    {
+        id: 4,
         name: "Genshin Impact",
-        currency: "Crystal",
-        icon: "fas fa-gem",
-        color: "#96ceb4",
-        nominals: [
-            { amount: "60 Crystal", price: 15000, bonus: "" },
-            { amount: "330 Crystal", price: 80000, bonus: "+30 Crystal" },
-            { amount: "1090 Crystal", price: 240000, bonus: "+110 Crystal" },
-            { amount: "2240 Crystal", price: 480000, bonus: "+240 Crystal" },
-            { amount: "3880 Crystal", price: 800000, bonus: "+520 Crystal" }
-        ]
+        icon: "fas fa-wind",
+        color: "#ffd166",
+        description: "Genesis Crystal",
+        price: "Mulai Rp 15.000"
     },
-    valorant: {
+    {
+        id: 5,
         name: "Valorant",
-        currency: "Points",
         icon: "fas fa-bullseye",
-        color: "#f7a8b8",
-        nominals: [
-            { amount: "125 Points", price: 15000, bonus: "" },
-            { amount: "420 Points", price: 50000, bonus: "" },
-            { amount: "700 Points", price: 80000, bonus: "" },
-            { amount: "1375 Points", price: 150000, bonus: "" },
-            { amount: "2400 Points", price: 250000, bonus: "" }
-        ]
+        color: "#ff6b6b",
+        description: "Valorant Points",
+        price: "Mulai Rp 10.000"
     },
-    codm: {
-        name: "Call of Duty Mobile",
-        currency: "CP",
-        icon: "fas fa-target",
-        color: "#ffe66d",
-        nominals: [
-            { amount: "80 CP", price: 12000, bonus: "" },
-            { amount: "420 CP", price: 60000, bonus: "" },
-            { amount: "700 CP", price: 100000, bonus: "" },
-            { amount: "1375 CP", price: 180000, bonus: "" },
-            { amount: "2400 CP", price: 300000, bonus: "" }
-        ]
+    {
+        id: 6,
+        name: "Call of Duty",
+        icon: "fas fa-gamepad",
+        color: "#4ecdc4",
+        description: "CP Points",
+        price: "Mulai Rp 8.000"
     }
-};
+];
 
-// Global State
-let currentUser = null;
+// DOM Elements
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const gamesGrid = document.getElementById('gamesGrid');
+const notificationContainer = document.getElementById('notificationContainer');
 
-// Initialize Application
+// Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    loadGames();
+    setupEventListeners();
+    setupSmoothScroll();
 });
 
-function initializeApp() {
-    loadUserData();
-    initializeNavigation();
-    initializeGamesGrid();
-    initializeAuthForms();
-    initializeModals();
-    
-    console.log('GameTopup initialized successfully!');
-}
-
-// User Management
-function loadUserData() {
-    const savedUser = localStorage.getItem('currentUser');
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        updateUserInterface();
+// Setup Event Listeners
+function setupEventListeners() {
+    // Mobile menu toggle
+    if (navToggle) {
+        navToggle.addEventListener('click', toggleMobileMenu);
     }
-}
 
-function updateUserInterface() {
-    const navButtons = document.querySelector('.nav__buttons');
-    
-    if (currentUser && navButtons) {
-        navButtons.innerHTML = `
-            <div class="user-menu">
-                <button class="btn btn--outline" onclick="showUserMenu()">
-                    <i class="fas fa-user"></i>
-                    ${currentUser.name}
-                </button>
-                <div class="user-dropdown" id="userDropdown">
-                    <a href="#"><i class="fas fa-history"></i> Riwayat</a>
-                    <a href="#"><i class="fas fa-wallet"></i> Saldo: Rp ${currentUser.balance?.toLocaleString() || '0'}</a>
-                    <a href="#"><i class="fas fa-cog"></i> Pengaturan</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-            </div>
-        `;
-    }
-}
-
-// Navigation
-function initializeNavigation() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.querySelector('i').classList.toggle('fa-bars');
-            this.querySelector('i').classList.toggle('fa-times');
-        });
-    }
-    
     // Close mobile menu when clicking on links
-    document.querySelectorAll('.nav__link').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                const navMenu = document.getElementById('nav-menu');
-                const navToggle = document.getElementById('nav-toggle');
-                if (navMenu) navMenu.classList.remove('active');
-                if (navToggle) {
-                    navToggle.querySelector('i').classList.add('fa-bars');
-                    navToggle.querySelector('i').classList.remove('fa-times');
-                }
-            }
-        });
+    const navLinks = document.querySelectorAll('.nav__link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
     });
-}
 
-// Games Grid
-function initializeGamesGrid() {
-    const gamesGrid = document.getElementById('gamesGrid');
-    if (!gamesGrid) return;
-    
-    const popularGames = ['mlbb', 'freefire', 'pubg', 'genshin', 'valorant', 'codm'];
-    
-    gamesGrid.innerHTML = popularGames.map(gameId => {
-        const game = gameData[gameId];
-        const lowestPrice = game.nominals[0].price.toLocaleString();
-        
-        return `
-            <div class="game-card" onclick="selectGame('${gameId}')">
-                ${gameId === 'mlbb' ? '<div class="game-badge"><i class="fas fa-fire"></i> Paling Laris</div>' : ''}
-                <div class="game-header">
-                    <div class="game-icon ${gameId}" style="background: ${game.color}">
-                        <i class="${game.icon}"></i>
-                    </div>
-                    <div class="game-info">
-                        <h3>${game.name}</h3>
-                        <p>${game.currency}</p>
-                    </div>
-                </div>
-                <div class="game-features">
-                    <span class="game-feature"><i class="fas fa-bolt"></i> Instant</span>
-                    <span class="game-feature"><i class="fas fa-gift"></i> Bonus</span>
-                </div>
-                <div class="game-price">Mulai Rp ${lowestPrice}</div>
-            </div>
-        `;
-    }).join('');
-}
-
-// Game Selection
-function selectGame(gameId) {
-    if (!currentUser) {
-        showNotification('Silakan login terlebih dahulu untuk top up', 'warning');
-        showLoginModal();
-        return;
-    }
-    
-    const game = gameData[gameId];
-    showNotification(`Memulai top up ${game.name}`, 'success');
-    
-    // Simulate loading
-    setTimeout(() => {
-        showNotification('Fitur top up sedang dikembangkan', 'info');
-    }, 1000);
-}
-
-// Authentication
-function initializeAuthForms() {
+    // Form submissions
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    
+
     if (loginForm) {
         loginForm.addEventListener('submit', handleLogin);
     }
-    
+
     if (registerForm) {
         registerForm.addEventListener('submit', handleRegister);
     }
-}
 
-function handleLogin(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const email = formData.get('email');
-    const password = formData.get('password');
-    
-    if (email && password) {
-        currentUser = {
-            id: 1,
-            name: 'Player Gaming',
-            email: email,
-            balance: 150000,
-            joinDate: new Date().toISOString()
-        };
-        
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        updateUserInterface();
-        closeModal('loginModal');
-        showNotification('Login berhasil! Selamat datang kembali!', 'success');
-    } else {
-        showNotification('Email dan password harus diisi', 'error');
-    }
-}
+    // Modal background close
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal(modal.id);
+            }
+        });
+    });
 
-function handleRegister(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(e.target);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const username = formData.get('username');
-    const password = formData.get('password');
-    const confirm = formData.get('confirm');
-    
-    if (name && email && username && password && confirm) {
-        if (password !== confirm) {
-            showNotification('Password dan konfirmasi password tidak cocok', 'error');
-            return;
-        }
-        
-        currentUser = {
-            id: Date.now(),
-            name: name,
-            email: email,
-            username: username,
-            balance: 0,
-            joinDate: new Date().toISOString()
-        };
-        
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        updateUserInterface();
-        closeModal('registerModal');
-        showNotification('Registrasi berhasil! Selamat bergabung!', 'success');
-    } else {
-        showNotification('Harap isi semua field dengan benar', 'error');
-    }
-}
-
-function logout() {
-    currentUser = null;
-    localStorage.removeItem('currentUser');
-    location.reload();
-}
-
-// Modals
-function initializeModals() {
-    // Close modals with ESC key
+    // Escape key to close modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeAllModals();
         }
     });
-    
-    // Close modals when clicking outside
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal(this.id);
+}
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    navMenu.classList.toggle('active');
+}
+
+function closeMobileMenu() {
+    navMenu.classList.remove('active');
+}
+
+// Modal Functions
+function showLoginModal() {
+    closeAllModals();
+    const modal = document.getElementById('loginModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function showRegisterModal() {
+    closeAllModals();
+    const modal = document.getElementById('registerModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function closeAllModals() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.classList.remove('active');
+    });
+    document.body.style.overflow = 'auto';
+}
+
+// Game Functions
+function loadGames() {
+    if (!gamesGrid) return;
+
+    gamesGrid.innerHTML = gamesData.map(game => `
+        <div class="game-card" onclick="selectGame(${game.id})">
+            <div class="game-icon" style="background-color: ${game.color}">
+                <i class="${game.icon}"></i>
+            </div>
+            <h3>${game.name}</h3>
+            <p>${game.description}</p>
+            <span class="game-price">${game.price}</span>
+        </div>
+    `).join('');
+}
+
+function selectGame(gameId) {
+    const game = gamesData.find(g => g.id === gameId);
+    showNotification(`Memilih game: ${game.name}`, 'success');
+    // Here you would typically redirect to the top-up page or show a top-up modal
+}
+
+function showAllGames() {
+    showNotification('Menampilkan semua game...', 'info');
+    // Implement show all games functionality
+}
+
+// Navigation Functions
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        closeMobileMenu();
+    }
+}
+
+function setupSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                closeMobileMenu();
             }
         });
     });
 }
 
-function showLoginModal() {
-    showModal('loginModal');
-}
+// Form Handlers
+function handleLogin(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const email = formData.get('email');
+    const password = formData.get('password');
 
-function showRegisterModal() {
-    showModal('registerModal');
-}
-
-function showModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    // Simulate login process
+    if (email && password) {
+        showNotification('Login berhasil!', 'success');
+        closeModal('loginModal');
+        // Here you would typically make an API call
+    } else {
+        showNotification('Harap isi semua field!', 'error');
     }
 }
 
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
+function handleRegister(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const password = formData.get('password');
+    const confirm = formData.get('confirm');
 
-function closeAllModals() {
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.style.display = 'none';
-    });
-    document.body.style.overflow = 'auto';
-}
-
-// User Menu
-function showUserMenu() {
-    const dropdown = document.getElementById('userDropdown');
-    if (dropdown) {
-        dropdown.classList.toggle('show');
-    }
-}
-
-// Close user dropdown when clicking outside
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.user-menu')) {
-        const dropdown = document.getElementById('userDropdown');
-        if (dropdown) {
-            dropdown.classList.remove('show');
-        }
-    }
-});
-
-// Scroll to Section
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// Start Topup
-function startTopup() {
-    if (!currentUser) {
-        showNotification('Silakan login terlebih dahulu', 'warning');
-        showLoginModal();
+    // Simple validation
+    if (password !== confirm) {
+        showNotification('Password tidak cocok!', 'error');
         return;
     }
-    
-    scrollToSection('games');
-    showNotification('Pilih game yang ingin di-top up', 'info');
+
+    showNotification('Pendaftaran berhasil!', 'success');
+    closeModal('registerModal');
+    // Here you would typically make an API call
 }
 
-// Show All Games
-function showAllGames() {
-    showNotification('Fitur daftar semua game sedang dikembangkan!', 'info');
-}
-
-// Notifications
+// Notification System
 function showNotification(message, type = 'info') {
-    const container = document.getElementById('notificationContainer');
-    if (!container) return;
-    
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    
-    const icons = {
-        success: 'fas fa-check-circle',
-        error: 'fas fa-exclamation-circle',
-        warning: 'fas fa-exclamation-triangle',
-        info: 'fas fa-info-circle'
-    };
-    
     notification.innerHTML = `
-        <div class="notification__icon">
-            <i class="${icons[type] || icons.info}"></i>
+        <div class="notification-content">
+            <p>${message}</p>
         </div>
-        <div class="notification__content">
-            <div class="notification__message">${message}</div>
-        </div>
-        <button class="notification__close" onclick="this.parentElement.remove()">
-            <i class="fas fa-times"></i>
-        </button>
     `;
-    
-    container.appendChild(notification);
-    
+
+    notificationContainer.appendChild(notification);
+
     // Auto remove after 5 seconds
     setTimeout(() => {
-        if (notification.parentElement) {
-            notification.remove();
-        }
+        notification.remove();
     }, 5000);
 }
 
-// Export functions to global scope
-window.showLoginModal = showLoginModal;
-window.showRegisterModal = showRegisterModal;
-window.closeModal = closeModal;
-window.scrollToSection = scrollToSection;
-window.startTopup = startTopup;
-window.selectGame = selectGame;
-window.showAllGames = showAllGames;
-window.showUserMenu = showUserMenu;
-window.logout = logout;
+// Top-up Functions
+function startTopup() {
+    showNotification('Memulai proses top-up...', 'info');
+    // Implement top-up flow
+}
+
+// Active link highlighting
+window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active-link');
+        }
+    });
+});
