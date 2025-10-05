@@ -1,0 +1,357 @@
+:root {
+    --primary: #4a6bff;
+    --secondary: #ff6b6b;
+    --dark: #333;
+    --light: #f8f9fa;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --gray: #6c757d;
+    --border: #dee2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fb;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary), #6a11cb);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Main Content */
+main {
+    padding: 2rem 0;
+}
+
+.order-process {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step {
+    padding: 2rem;
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+/* Game List */
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.game-item {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.game-item.active {
+    border-color: var(--primary);
+    background-color: rgba(74, 107, 255, 0.05);
+}
+
+.game-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.game-item span {
+    display: block;
+    font-weight: 600;
+}
+
+/* Nominal List */
+.nominal-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.nominal-item {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nominal-item:hover {
+    border-color: var(--primary);
+}
+
+.nominal-item.active {
+    border-color: var(--primary);
+    background-color: rgba(74, 107, 255, 0.05);
+}
+
+.nominal-amount {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.nominal-price {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nominal-bonus {
+    font-size: 0.85rem;
+    color: var(--success);
+    margin-top: 0.25rem;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* Order Summary */
+.order-summary {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Payment Methods */
+.payment-methods {
+    margin-bottom: 1.5rem;
+}
+
+.payment-methods h3 {
+    margin-bottom: 1rem;
+}
+
+.payment-option {
+    margin-bottom: 0.75rem;
+}
+
+.payment-option input {
+    margin-right: 0.5rem;
+}
+
+/* Buttons */
+.btn-next, .btn-prev, .btn-pay, .btn-home {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-next, .btn-pay {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-next:hover, .btn-pay:hover {
+    background-color: #3a5bef;
+    transform: translateY(-2px);
+}
+
+.btn-prev {
+    background-color: var(--gray);
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.btn-prev:hover {
+    background-color: #5a6268;
+}
+
+.btn-home {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-home:hover {
+    background-color: #218838;
+}
+
+.step-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* Payment Status */
+.payment-status {
+    text-align: center;
+    padding: 2rem;
+}
+
+.status-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-icon.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.status-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.order-details {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.status-badge {
+    background-color: var(--warning);
+    color: var(--dark);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nominal-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .step {
+        padding: 1.5rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .step-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-prev {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}
