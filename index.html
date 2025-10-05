@@ -34,8 +34,77 @@
                 </ul>
 
                 <div class="nav__buttons">
-                    <button class="btn btn--login" onclick="showLoginModal()">Masuk</button>
-                    <button class="btn btn--primary" onclick="showRegisterModal()">Daftar</button>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    
+                    <!-- User Menu -->
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="user-name">Player Gaming</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="user-info">
+                                <div class="user-avatar-large">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-details">
+                                    <h4>Player Gaming</h4>
+                                    <p>Level 25</p>
+                                </div>
+                            </div>
+                            
+                            <div class="user-stats">
+                                <div class="user-stat">
+                                    <span class="stat-label">Saldo</span>
+                                    <span class="stat-value">Rp 150.000</span>
+                                </div>
+                                <div class="user-stat">
+                                    <span class="stat-label">Poin</span>
+                                    <span class="stat-value">1.250</span>
+                                </div>
+                            </div>
+                            
+                            <div class="user-actions">
+                                <a href="#" class="user-action">
+                                    <i class="fas fa-history"></i>
+                                    Riwayat Transaksi
+                                </a>
+                                <a href="#" class="user-action">
+                                    <i class="fas fa-wallet"></i>
+                                    Top Up Saldo
+                                </a>
+                                <a href="#" class="user-action">
+                                    <i class="fas fa-cog"></i>
+                                    Pengaturan
+                                </a>
+                                <a href="#" class="user-action">
+                                    <i class="fas fa-question-circle"></i>
+                                    Bantuan
+                                </a>
+                            </div>
+                            
+                            <div class="user-footer">
+                                <button class="btn btn--logout" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Login/Register Buttons (akan disembunyikan saat login) -->
+                    <div class="auth-buttons" id="authButtons">
+                        <button class="btn btn--login" onclick="showLoginModal()">Masuk</button>
+                        <button class="btn btn--primary" onclick="showRegisterModal()">Daftar</button>
+                    </div>
                 </div>
             </div>
 
@@ -304,7 +373,7 @@
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal__content">
             <div class="modal__header">
@@ -356,6 +425,7 @@
         </div>
     </div>
 
+    <!-- Register Modal -->
     <div class="modal" id="registerModal">
         <div class="modal__content">
             <div class="modal__header">
