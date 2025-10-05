@@ -217,8 +217,8 @@
 
     <!-- CTA Section -->
     <section class="cta section">
-        <div class="cta-container container">
-            <div class="cta-content">
+        <div class="cta__container container">
+            <div class="cta__content">
                 <h2>Ready to Top Up?</h2>
                 <p>Bergabung dengan 500K+ gamers yang sudah mempercayai GameTopup</p>
                 <button class="btn btn--primary btn--large" onclick="startTopup()">
@@ -231,18 +231,18 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <div class="footer-logo">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <div class="footer__col">
+                    <div class="footer__logo">
                         <i class="fas fa-gamepad"></i>
                         <span>GameTopup</span>
                     </div>
-                    <p class="footer-description">
+                    <p class="footer__description">
                         Platform top up game terpercaya dengan proses cepat dan aman. 
                         Melayani berbagai game populer dengan harga terbaik.
                     </p>
-                    <div class="footer-social">
+                    <div class="footer__social">
                         <a href="#" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -258,9 +258,9 @@
                     </div>
                 </div>
 
-                <div class="footer-col">
+                <div class="footer__col">
                     <h3>Layanan</h3>
-                    <ul class="footer-links">
+                    <ul class="footer__links">
                         <li><a href="#">Top Up Game</a></li>
                         <li><a href="#">Voucher Game</a></li>
                         <li><a href="#">Item Game</a></li>
@@ -268,9 +268,9 @@
                     </ul>
                 </div>
 
-                <div class="footer-col">
+                <div class="footer__col">
                     <h3>Perusahaan</h3>
-                    <ul class="footer-links">
+                    <ul class="footer__links">
                         <li><a href="#">Tentang Kami</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Karir</a></li>
@@ -278,9 +278,9 @@
                     </ul>
                 </div>
 
-                <div class="footer-col">
+                <div class="footer__col">
                     <h3>Bantuan</h3>
-                    <ul class="footer-links">
+                    <ul class="footer__links">
                         <li><a href="#">Cara Top Up</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Syarat & Ketentuan</a></li>
@@ -288,9 +288,9 @@
                     </ul>
                 </div>
 
-                <div class="footer-col">
+                <div class="footer__col">
                     <h3>Kontak</h3>
-                    <div class="footer-contact">
+                    <div class="footer__contact">
                         <p><i class="fas fa-envelope"></i> support@gametopup.com</p>
                         <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
                         <p><i class="fas fa-clock"></i> 24/7 Customer Service</p>
@@ -298,32 +298,32 @@
                 </div>
             </div>
 
-            <div class="footer-bottom">
+            <div class="footer__bottom">
                 <p>&copy; 2024 GameTopup. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Login Modal -->
+    <!-- Modals -->
     <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal__content">
+            <div class="modal__header">
                 <h2>Masuk ke Akun</h2>
-                <button class="modal-close" onclick="closeModal('loginModal')">
+                <button class="modal__close" onclick="closeModal('loginModal')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal__body">
                 <form class="auth-form" id="loginForm">
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="loginEmail">Email atau Username</label>
                         <input type="text" id="loginEmail" name="email" placeholder="masukkan email atau username" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="loginPassword">Password</label>
                         <input type="password" id="loginPassword" name="password" placeholder="masukkan password" required>
                     </div>
-                    <div class="form-options">
+                    <div class="form__options">
                         <label class="checkbox">
                             <input type="checkbox" name="remember">
                             <span class="checkmark"></span>
@@ -356,38 +356,37 @@
         </div>
     </div>
 
-    <!-- Register Modal -->
     <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal__content">
+            <div class="modal__header">
                 <h2>Daftar Akun Baru</h2>
-                <button class="modal-close" onclick="closeModal('registerModal')">
+                <button class="modal__close" onclick="closeModal('registerModal')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal__body">
                 <form class="auth-form" id="registerForm">
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="registerName">Nama Lengkap</label>
                         <input type="text" id="registerName" name="name" placeholder="masukkan nama lengkap" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="registerEmail">Email</label>
                         <input type="email" id="registerEmail" name="email" placeholder="masukkan email" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="registerUsername">Username</label>
                         <input type="text" id="registerUsername" name="username" placeholder="buat username" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="registerPassword">Password</label>
                         <input type="password" id="registerPassword" name="password" placeholder="buat password" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form__group">
                         <label for="registerConfirm">Konfirmasi Password</label>
                         <input type="password" id="registerConfirm" name="confirm" placeholder="ulangi password" required>
                     </div>
-                    <div class="form-options">
+                    <div class="form__options">
                         <label class="checkbox">
                             <input type="checkbox" name="terms" required>
                             <span class="checkmark"></span>
