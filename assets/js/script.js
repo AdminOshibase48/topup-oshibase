@@ -50,17 +50,27 @@ const gamesData = [
     }
 ];
 
+// State Management
+let currentUser = null;
+let isDarkMode = false;
+
 // DOM Elements
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const gamesGrid = document.getElementById('gamesGrid');
 const notificationContainer = document.getElementById('notificationContainer');
+const themeToggle = document.getElementById('themeToggle');
+const userMenu = document.getElementById('userMenu');
+const userDropdown = document.getElementById('userDropdown');
+const authButtons = document.getElementById('authButtons');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     loadGames();
     setupEventListeners();
     setupSmoothScroll();
+    loadThemePreference();
+    checkAuthState();
 });
 
 // Setup Event Listeners
@@ -74,6 +84,18 @@ function setupEventListeners() {
     const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Theme toggle
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Close user dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!userMenu.contains(e.target)) {
+            closeUserMenu();
+        }
     });
 
     // Form submissions
@@ -102,8 +124,105 @@ function setupEventListeners() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeAllModals();
+            closeUserMenu();
         }
     });
+}
+
+// Theme Functions
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    updateThemeToggle();
+}
+
+function loadThemePreference() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    isDarkMode = savedTheme === 'dark';
+    document.body.setAttribute('data-theme', savedTheme);
+    updateThemeToggle();
+}
+
+function updateThemeToggle() {
+    if (themeToggle) {
+        const sunIcon = themeToggle.querySelector('.fa-sun');
+        const moonIcon = themeToggle.querySelector('.fa-moon');
+        
+        if (isDarkMode) {
+            sunIcon.style.opacity = '1';
+            moonIcon.style.opacity = '0.5';
+        } else {
+            sunIcon.style.opacity = '0.5';
+            moonIcon.style.opacity = '1';
+        }
+    }
+}
+
+// User Menu Functions
+function toggleUserMenu() {
+    userMenu.classList.toggle('active');
+}
+
+function closeUserMenu() {
+    userMenu.classList.remove('active');
+}
+
+// Auth Functions
+function checkAuthState() {
+    // Simulate checking if user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    
+    if (isLoggedIn) {
+        loginUser({
+            name: 'Player Gaming',
+            email: 'player@gametopup.com',
+            balance: 150000,
+            points: 1250,
+            level: 25
+        });
+    } else {
+        logoutUser();
+    }
+}
+
+function loginUser(userData) {
+    currentUser = userData;
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userData', JSON.stringify(userData));
+    updateUIForAuthState(true);
+    showNotification(`Selamat datang, ${userData.name}!`, 'success');
+}
+
+function logoutUser() {
+    currentUser = null;
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('userData');
+    updateUIForAuthState(false);
+    showNotification('Anda telah logout', 'info');
+}
+
+function updateUIForAuthState(isLoggedIn) {
+    if (isLoggedIn) {
+        userMenu.style.display = 'flex';
+        authButtons.style.display = 'none';
+        
+        // Update user info if needed
+        if (currentUser) {
+            const userNameElement = userMenu.querySelector('.user-name');
+            const userBalanceElement = userDropdown.querySelector('.stat-value');
+            
+            if (userNameElement) {
+                userNameElement.textContent = currentUser.name;
+            }
+            if (userBalanceElement) {
+                userBalanceElement.textContent = `Rp ${currentUser.balance.toLocaleString()}`;
+            }
+        }
+    } else {
+        userMenu.style.display = 'none';
+        authButtons.style.display = 'flex';
+    }
 }
 
 // Mobile Menu Functions
@@ -162,8 +281,16 @@ function loadGames() {
 
 function selectGame(gameId) {
     const game = gamesData.find(g => g.id === gameId);
+    
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu untuk top up', 'warning');
+        showLoginModal();
+        return;
+    }
+    
     showNotification(`Memilih game: ${game.name}`, 'success');
     // Here you would typically redirect to the top-up page or show a top-up modal
+    startGameTopup(gameId);
 }
 
 function showAllGames() {
@@ -206,9 +333,14 @@ function handleLogin(e) {
 
     // Simulate login process
     if (email && password) {
-        showNotification('Login berhasil!', 'success');
+        loginUser({
+            name: 'Player Gaming',
+            email: email,
+            balance: 150000,
+            points: 1250,
+            level: 25
+        });
         closeModal('loginModal');
-        // Here you would typically make an API call
     } else {
         showNotification('Harap isi semua field!', 'error');
     }
@@ -226,9 +358,9 @@ function handleRegister(e) {
         return;
     }
 
-    showNotification('Pendaftaran berhasil!', 'success');
+    showNotification('Pendaftaran berhasil! Silakan login.', 'success');
     closeModal('registerModal');
-    // Here you would typically make an API call
+    showLoginModal();
 }
 
 // Notification System
@@ -251,8 +383,25 @@ function showNotification(message, type = 'info') {
 
 // Top-up Functions
 function startTopup() {
+    if (!currentUser) {
+        showNotification('Silakan login terlebih dahulu', 'warning');
+        showLoginModal();
+        return;
+    }
+    
     showNotification('Memulai proses top-up...', 'info');
     // Implement top-up flow
+}
+
+function startGameTopup(gameId) {
+    // This will be implemented in the next step for the top-up system
+    console.log(`Starting top-up for game ID: ${gameId}`);
+    showNotification(`Sistem top-up untuk game ini akan segera tersedia!`, 'info');
+}
+
+function logout() {
+    logoutUser();
+    closeUserMenu();
 }
 
 // Active link highlighting
