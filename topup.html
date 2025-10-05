@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Game - GameTopup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="topup-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goToHome()" style="cursor: pointer;">
+                <i class="fas fa-gamepad"></i>
+                <span>GameTopup</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#games" class="nav-link">Games</a>
+                <a href="index.html#promo" class="nav-link">Promo</a>
+                <a href="index.html#help" class="nav-link">Bantuan</a>
+            </div>
+            <div class="nav-actions">
+                <div class="user-menu">
+                    <button class="btn-user" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <span>Hi, Player!</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#"><i class="fas fa-history"></i> Riwayat</a>
+                        <a href="#"><i class="fas fa-wallet"></i> Saldo</a>
+                        <a href="#"><i class="fas fa-cog"></i> Pengaturan</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Topup Content -->
+    <main class="topup-container">
+        <div class="topup-header">
+            <h1>Top Up Game</h1>
+            <p>Pilih game dan nominal top up yang diinginkan</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step-item active" data-step="1">
+                <div class="step-number">1</div>
+                <span>Pilih Game</span>
+            </div>
+            <div class="step-item" data-step="2">
+                <div class="step-number">2</div>
+                <span>Pilih Nominal</span>
+            </div>
+            <div class="step-item" data-step="3">
+                <div class="step-number">3</div>
+                <span>Data Pembeli</span>
+            </div>
+            <div class="step-item" data-step="4">
+                <div class="step-number">4</div>
+                <span>Pembayaran</span>
+            </div>
+        </div>
+
+        <!-- Step Content akan sama seperti sebelumnya -->
+        <!-- ... (konten step 1-5 sama seperti code sebelumnya) ... -->
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
