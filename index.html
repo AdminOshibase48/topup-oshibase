@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTopup - Top Up Game Murah & Cepat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="landing-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -16,14 +16,14 @@
                 <span>GameTopup</span>
             </div>
             <div class="nav-menu">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="#" class="nav-link">Games</a>
-                <a href="#" class="nav-link">Promo</a>
-                <a href="#" class="nav-link">Bantuan</a>
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#games" class="nav-link">Games</a>
+                <a href="#promo" class="nav-link">Promo</a>
+                <a href="#help" class="nav-link">Bantuan</a>
             </div>
             <div class="nav-actions">
-                <button class="btn-login">Login</button>
-                <button class="btn-register">Daftar</button>
+                <button class="btn-login" onclick="showLogin()">Login</button>
+                <button class="btn-register" onclick="showRegister()">Daftar</button>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -34,15 +34,34 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🔥 Terpercaya oleh 500K+ Gamers</span>
+                </div>
                 <h1>Top Up Game <span class="gradient-text">Murah & Cepat</span></h1>
                 <p>Diamond, UC, Crystal, dan item game lainnya. Proses instan dalam 1 menit!</p>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary btn-large" onclick="startTopup()">
+                        <i class="fas fa-bolt"></i>
+                        Top Up Sekarang
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="scrollToGames()">
+                        <i class="fas fa-gamepad"></i>
+                        Lihat Game
+                    </button>
+                </div>
+
                 <div class="hero-stats">
                     <div class="stat">
                         <h3>500K+</h3>
                         <p>Player Trusted</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Game Tersedia</p>
                     </div>
                     <div class="stat">
                         <h3>24/7</h3>
@@ -55,460 +74,376 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="floating-card">
-                    <div class="card-header">
-                        <i class="fas fa-bolt"></i>
-                        <span>Top Up Sekarang</span>
+                <div class="floating-cards">
+                    <div class="card game-card floating">
+                        <img src="https://via.placeholder.com/80x80/FF6B6B/white?text=ML" alt="MLBB">
+                        <span>Mobile Legends</span>
                     </div>
-                    <div class="card-content">
-                        <p>Dapatkan bonus extra diamond!</p>
+                    <div class="card game-card floating delay-1">
+                        <img src="https://via.placeholder.com/80x80/4ECDC4/white?text=FF" alt="Free Fire">
+                        <span>Free Fire</span>
+                    </div>
+                    <div class="card game-card floating delay-2">
+                        <img src="https://via.placeholder.com/80x80/45B7D1/white?text=PG" alt="PUBG">
+                        <span>PUBG Mobile</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-container">
-        <!-- Progress Steps -->
-        <div class="progress-steps">
-            <div class="step-item active">
-                <div class="step-number">1</div>
-                <span>Pilih Game</span>
+    <!-- Popular Games Section -->
+    <section id="games" class="popular-games">
+        <div class="container">
+            <div class="section-header">
+                <h2>Game Populer</h2>
+                <p>Pilih game favoritmu dan top up dengan harga terbaik</p>
             </div>
-            <div class="step-item">
-                <div class="step-number">2</div>
-                <span>Pilih Nominal</span>
-            </div>
-            <div class="step-item">
-                <div class="step-number">3</div>
-                <span>Data Pembeli</span>
-            </div>
-            <div class="step-item">
-                <div class="step-number">4</div>
-                <span>Pembayaran</span>
-            </div>
-        </div>
 
-        <!-- Order Process -->
-        <div class="order-process">
-            <!-- Step 1: Pilih Game -->
-            <div class="step-content active" id="step1">
-                <div class="step-header">
-                    <h2><i class="fas fa-gamepad"></i> Pilih Game Favoritmu</h2>
-                    <p>Pilih game yang ingin kamu top up</p>
-                </div>
-                
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cari game...">
-                </div>
-
-                <div class="games-grid">
-                    <div class="game-card" data-game="mlbb">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/FF6B6B/white?text=ML" alt="MLBB">
-                        </div>
-                        <div class="game-info">
-                            <h4>Mobile Legends</h4>
-                            <p>Diamond</p>
-                        </div>
-                        <div class="game-badge hot">
-                            <i class="fas fa-fire"></i>
-                        </div>
+            <div class="games-grid">
+                <div class="game-card-large" data-game="mlbb" onclick="selectGame('mlbb')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/FF6B6B/white?text=ML" alt="MLBB">
                     </div>
-
-                    <div class="game-card" data-game="freefire">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/4ECDC4/white?text=FF" alt="Free Fire">
+                    <div class="game-content">
+                        <h3>Mobile Legends</h3>
+                        <p>Diamond</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                            <span><i class="fas fa-gift"></i> Bonus Diamond</span>
                         </div>
-                        <div class="game-info">
-                            <h4>Free Fire</h4>
-                            <p>Diamond</p>
-                        </div>
+                        <div class="price-start">Mulai dari Rp 20.000</div>
                     </div>
-
-                    <div class="game-card" data-game="pubg">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/45B7D1/white?text=PG" alt="PUBG">
-                        </div>
-                        <div class="game-info">
-                            <h4>PUBG Mobile</h4>
-                            <p>UC</p>
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-game="genshin">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/96CEB4/white?text=GI" alt="Genshin">
-                        </div>
-                        <div class="game-info">
-                            <h4>Genshin Impact</h4>
-                            <p>Crystal</p>
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-game="valorant">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/F7A8B8/white?text=VL" alt="Valorant">
-                        </div>
-                        <div class="game-info">
-                            <h4>Valorant</h4>
-                            <p>Points</p>
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-game="codm">
-                        <div class="game-icon">
-                            <img src="https://via.placeholder.com/60x60/FFE66D/white?text=CO" alt="CODM">
-                        </div>
-                        <div class="game-info">
-                            <h4>Call of Duty Mobile</h4>
-                            <p>CP</p>
-                        </div>
+                    <div class="game-badge hot">
+                        <i class="fas fa-fire"></i> Paling Laris
                     </div>
                 </div>
 
-                <button class="btn-primary btn-next" onclick="nextStep(2)">
-                    Lanjutkan <i class="fas fa-arrow-right"></i>
+                <div class="game-card-large" data-game="freefire" onclick="selectGame('freefire')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/4ECDC4/white?text=FF" alt="Free Fire">
+                    </div>
+                    <div class="game-content">
+                        <h3>Free Fire</h3>
+                        <p>Diamond</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                            <span><i class="fas fa-gift"></i> Bonus Diamond</span>
+                        </div>
+                        <div class="price-start">Mulai dari Rp 10.000</div>
+                    </div>
+                </div>
+
+                <div class="game-card-large" data-game="pubg" onclick="selectGame('pubg')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/45B7D1/white?text=PG" alt="PUBG">
+                    </div>
+                    <div class="game-content">
+                        <h3>PUBG Mobile</h3>
+                        <p>UC</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                            <span><i class="fas fa-gift"></i> Bonus UC</span>
+                        </div>
+                        <div class="price-start">Mulai dari Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="game-card-large" data-game="genshin" onclick="selectGame('genshin')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/96CEB4/white?text=GI" alt="Genshin">
+                    </div>
+                    <div class="game-content">
+                        <h3>Genshin Impact</h3>
+                        <p>Crystal</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                            <span><i class="fas fa-gift"></i> Bonus Crystal</span>
+                        </div>
+                        <div class="price-start">Mulai dari Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="game-card-large" data-game="valorant" onclick="selectGame('valorant')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/F7A8B8/white?text=VL" alt="Valorant">
+                    </div>
+                    <div class="game-content">
+                        <h3>Valorant</h3>
+                        <p>Points</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                        </div>
+                        <div class="price-start">Mulai dari Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="game-card-large" data-game="codm" onclick="selectGame('codm')">
+                    <div class="game-image">
+                        <img src="https://via.placeholder.com/200x200/FFE66D/white?text=CO" alt="CODM">
+                    </div>
+                    <div class="game-content">
+                        <h3>Call of Duty Mobile</h3>
+                        <p>CP</p>
+                        <div class="game-features">
+                            <span><i class="fas fa-bolt"></i> Instant Delivery</span>
+                        </div>
+                        <div class="price-start">Mulai dari Rp 12.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-actions">
+                <button class="btn-outline" onclick="showAllGames()">
+                    Lihat Semua Game <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
+        </div>
+    </section>
 
-            <!-- Step 2: Pilih Nominal -->
-            <div class="step-content" id="step2">
-                <div class="step-header">
-                    <h2><i class="fas fa-coins"></i> Pilih Nominal Top Up</h2>
-                    <p>Pilih jumlah diamond/koin yang diinginkan</p>
-                </div>
-
-                <div class="selected-game-banner">
-                    <div class="game-display">
-                        <img id="selectedGameIcon" src="https://via.placeholder.com/40x40/FF6B6B/white?text=ML" alt="Game">
-                        <div>
-                            <h4 id="selectedGameName">Mobile Legends</h4>
-                            <p>ID: <span id="selectedGameId">-</span></p>
-                        </div>
-                    </div>
-                    <button class="btn-change" onclick="prevStep(1)">
-                        <i class="fas fa-edit"></i> Ubah
-                    </button>
-                </div>
-
-                <div class="nominals-grid" id="nominalList">
-                    <!-- Nominal akan diisi oleh JavaScript -->
-                </div>
-
-                <div class="step-actions">
-                    <button class="btn-secondary" onclick="prevStep(1)">
-                        <i class="fas fa-arrow-left"></i> Kembali
-                    </button>
-                    <button class="btn-primary" onclick="nextStep(3)">
-                        Lanjutkan <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kenapa Pilih GameTopup?</h2>
+                <p>Kami memberikan pengalaman top up terbaik untuk gamers Indonesia</p>
             </div>
 
-            <!-- Step 3: Data Pembeli -->
-            <div class="step-content" id="step3">
-                <div class="step-header">
-                    <h2><i class="fas fa-user"></i> Data Pembeli</h2>
-                    <p>Masukkan data akun game kamu</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Proses Cepat</h3>
+                    <p>Diamond dan item game langsung masuk dalam 1-5 menit setelah pembayaran</p>
                 </div>
 
-                <div class="order-preview">
-                    <div class="preview-item">
-                        <span>Game</span>
-                        <span id="previewGame">Mobile Legends</span>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div class="preview-item">
-                        <span>Nominal</span>
-                        <span id="previewNominal">86 Diamond</span>
-                    </div>
-                    <div class="preview-item total">
-                        <span>Total Bayar</span>
-                        <span id="previewPrice">Rp 20.000</span>
-                    </div>
+                    <h3>100% Aman</h3>
+                    <p>Transaksi aman terjamin dengan sistem keamanan berlapis</p>
                 </div>
 
-                <form class="customer-form" id="customerForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="playerId">ID Game / Nickname</label>
-                            <input type="text" id="playerId" name="playerId" required placeholder="Contoh: 123456789">
-                            <small>Masukkan ID game atau nickname kamu</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="playerZone">Zone ID / Server (Opsional)</label>
-                            <input type="text" id="playerZone" name="playerZone" placeholder="Contoh: 1234">
-                            <small>Kosongkan jika tidak ada</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="playerName">Nama Lengkap</label>
-                            <input type="text" id="playerName" name="playerName" required placeholder="Nama lengkap pembeli">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="playerEmail">Email</label>
-                            <input type="email" id="playerEmail" name="playerEmail" required placeholder="email@example.com">
-                            <small>Invoice akan dikirim ke email ini</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="playerPhone">No. WhatsApp</label>
-                            <input type="tel" id="playerPhone" name="playerPhone" required placeholder="08xxxxxxxxxx">
-                            <small>Notifikasi akan dikirim via WhatsApp</small>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-                </form>
-
-                <div class="step-actions">
-                    <button class="btn-secondary" onclick="prevStep(2)">
-                        <i class="fas fa-arrow-left"></i> Kembali
-                    </button>
-                    <button class="btn-primary" onclick="nextStep(4)">
-                        Lanjutkan <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Step 4: Pembayaran -->
-            <div class="step-content" id="step4">
-                <div class="step-header">
-                    <h2><i class="fas fa-credit-card"></i> Metode Pembayaran</h2>
-                    <p>Pilih metode pembayaran yang diinginkan</p>
+                    <h3>Support 24/7</h3>
+                    <p>Customer service siap membantu kapan saja, 24 jam nonstop</p>
                 </div>
 
-                <div class="payment-container">
-                    <div class="order-summary">
-                        <h3>Ringkasan Pesanan</h3>
-                        <div class="summary-item">
-                            <span>Game</span>
-                            <span id="summaryGame">Mobile Legends</span>
-                        </div>
-                        <div class="summary-item">
-                            <span>Nominal</span>
-                            <span id="summaryNominal">86 Diamond</span>
-                        </div>
-                        <div class="summary-item">
-                            <span>ID Game</span>
-                            <span id="summaryId">123456789</span>
-                        </div>
-                        <div class="summary-item">
-                            <span>Nama</span>
-                            <span id="summaryName">John Doe</span>
-                        </div>
-                        <div class="summary-item total">
-                            <span>Total Bayar</span>
-                            <span id="summaryPrice">Rp 20.000</span>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
                     </div>
-
-                    <div class="payment-methods">
-                        <h3>Pilih Pembayaran</h3>
-                        
-                        <div class="payment-category">
-                            <h4><i class="fas fa-mobile-alt"></i> E-Wallet</h4>
-                            <div class="payment-options">
-                                <div class="payment-option">
-                                    <input type="radio" id="gopay" name="payment" value="gopay" checked>
-                                    <label for="gopay">
-                                        <img src="https://via.placeholder.com/40x40/00AAEE/white?text=GP" alt="Gopay">
-                                        <span>Gopay</span>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="ovo" name="payment" value="ovo">
-                                    <label for="ovo">
-                                        <img src="https://via.placeholder.com/40x40/4C2E8E/white?text=OV" alt="OVO">
-                                        <span>OVO</span>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="dana" name="payment" value="dana">
-                                    <label for="dana">
-                                        <img src="https://via.placeholder.com/40x40/108EE9/white?text=DN" alt="DANA">
-                                        <span>DANA</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="payment-category">
-                            <h4><i class="fas fa-university"></i> Transfer Bank</h4>
-                            <div class="payment-options">
-                                <div class="payment-option">
-                                    <input type="radio" id="bca" name="payment" value="bca">
-                                    <label for="bca">
-                                        <img src="https://via.placeholder.com/40x40/0066B3/white?text=BC" alt="BCA">
-                                        <span>BCA</span>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="bni" name="payment" value="bni">
-                                    <label for="bni">
-                                        <img src="https://via.placeholder.com/40x40/0066B3/white?text=BN" alt="BNI">
-                                        <span>BNI</span>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="bri" name="payment" value="bri">
-                                    <label for="bri">
-                                        <img src="https://via.placeholder.com/40x40/0066B3/white?text=BR" alt="BRI">
-                                        <span>BRI</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="payment-category">
-                            <h4><i class="fas fa-qrcode"></i> Lainnya</h4>
-                            <div class="payment-options">
-                                <div class="payment-option">
-                                    <input type="radio" id="qris" name="payment" value="qris">
-                                    <label for="qris">
-                                        <img src="https://via.placeholder.com/40x40/FF6B6B/white?text=QR" alt="QRIS">
-                                        <span>QRIS</span>
-                                    </label>
-                                </div>
-                                <div class="payment-option">
-                                    <input type="radio" id="indomaret" name="payment" value="indomaret">
-                                    <label for="indomaret">
-                                        <img src="https://via.placeholder.com/40x40/FF0000/white?text=IM" alt="Indomaret">
-                                        <span>Indomaret</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Bonus Terbaik</h3>
+                    <p>Dapatkan bonus diamond dan koin tambahan setiap top up</p>
                 </div>
 
-                <div class="step-actions">
-                    <button class="btn-secondary" onclick="prevStep(3)">
-                        <i class="fas fa-arrow-left"></i> Kembali
-                    </button>
-                    <button class="btn-pay" onclick="processPayment()">
-                        <i class="fas fa-lock"></i> Bayar Sekarang
-                    </button>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Harga Murah</h3>
+                    <p>Harga kompetitif dengan promo dan diskon setiap hari</p>
                 </div>
-            </div>
 
-            <!-- Step 5: Success -->
-            <div class="step-content" id="step5">
-                <div class="success-container">
-                    <div class="success-icon">
-                        <i class="fas fa-check-circle"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h2>Pembayaran Berhasil!</h2>
-                    <p>Pesanan kamu sedang diproses. Item game akan masuk dalam 1-5 menit.</p>
-                    
-                    <div class="success-details">
-                        <div class="detail-card">
-                            <h3>Detail Pesanan</h3>
-                            <div class="detail-item">
-                                <span>Kode Pesanan</span>
-                                <span id="orderCode" class="order-code">TOPUP-ABC123XYZ</span>
-                            </div>
-                            <div class="detail-item">
-                                <span>Game</span>
-                                <span id="successGame">Mobile Legends</span>
-                            </div>
-                            <div class="detail-item">
-                                <span>Nominal</span>
-                                <span id="successNominal">86 Diamond</span>
-                            </div>
-                            <div class="detail-item">
-                                <span>ID Game</span>
-                                <span id="successId">123456789</span>
-                            </div>
-                            <div class="detail-item total">
-                                <span>Total Bayar</span>
-                                <span id="successPrice">Rp 20.000</span>
-                            </div>
-                        </div>
-
-                        <div class="status-timeline">
-                            <h3>Status Pesanan</h3>
-                            <div class="timeline">
-                                <div class="timeline-item active">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h4>Pembayaran Berhasil</h4>
-                                        <p>Pesanan telah diterima</p>
-                                        <span class="timeline-time">Baru saja</span>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h4>Sedang Diproses</h4>
-                                        <p>Mengirim diamond ke akun kamu</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h4>Selesai</h4>
-                                        <p>Diamond telah masuk</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="success-actions">
-                        <button class="btn-secondary">
-                            <i class="fas fa-download"></i> Download Invoice
-                        </button>
-                        <button class="btn-primary" onclick="resetOrder()">
-                            <i class="fas fa-sync"></i> Top Up Lagi
-                        </button>
-                    </div>
+                    <h3>Payment Lengkap</h3>
+                    <p>Banyak metode pembayaran: E-wallet, Transfer Bank, QRIS, dll</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Siap Top Up Game Favoritmu?</h2>
+                <p>Bergabung dengan 500K+ gamers yang sudah mempercayai GameTopup</p>
+                <button class="btn-primary btn-large" onclick="startTopup()">
+                    <i class="fas fa-rocket"></i>
+                    Mulai Top Up Sekarang
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>GameTopup</h3>
-                <p>Platform top up game terpercaya dengan proses cepat dan aman.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <span>GameTopup</span>
+                    </div>
+                    <p>Platform top up game terpercaya dengan proses cepat dan aman.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Layanan</h4>
+                    <a href="#">Top Up Game</a>
+                    <a href="#">Voucher Game</a>
+                    <a href="#">Item Game</a>
+                    <a href="#">Akun Game</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Perusahaan</h4>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Partner</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Bantuan</h4>
+                    <a href="#">Cara Top Up</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p><i class="fas fa-envelope"></i> support@gametopup.com</p>
+                    <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
+                    <p><i class="fas fa-clock"></i> 24/7 Customer Service</p>
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Layanan</h4>
-                <a href="#">Top Up Game</a>
-                <a href="#">Voucher Game</a>
-                <a href="#">Item Game</a>
-                <a href="#">Promo</a>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 GameTopup. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Bantuan</h4>
-                <a href="#">Cara Top Up</a>
-                <a href="#">FAQ</a>
-                <a href="#">Syarat & Ketentuan</a>
-                <a href="#">Kebijakan Privasi</a>
-            </div>
-            <div class="footer-section">
-                <h4>Kontak</h4>
-                <p><i class="fas fa-envelope"></i> support@gametopup.com</p>
-                <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
-                <p><i class="fas fa-clock"></i> 24/7 Customer Service</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 GameTopup. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login ke Akunmu</h2>
+                <button class="modal-close" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email atau Username</label>
+                        <input type="text" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Ingat saya</span>
+                        </label>
+                        <a href="#" class="forgot-password">Lupa password?</a>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Login</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>atau login dengan</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="btn-social google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="btn-social facebook">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                </div>
+
+                <div class="auth-switch">
+                    <p>Belum punya akun? <a href="#" onclick="showRegister()">Daftar di sini</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Daftar Akun Baru</h2>
+                <button class="modal-close" onclick="closeModal('registerModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerUsername">Username</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirm">Konfirmasi Password</label>
+                        <input type="password" id="registerConfirm" name="confirm" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>Saya setuju dengan <a href="#">Syarat & Ketentuan</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Daftar</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>atau daftar dengan</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="btn-social google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="btn-social facebook">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                </div>
+
+                <div class="auth-switch">
+                    <p>Sudah punya akun? <a href="#" onclick="showLogin()">Login di sini</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
