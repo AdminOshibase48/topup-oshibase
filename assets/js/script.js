@@ -4,7 +4,7 @@ const gameData = {
         name: "Mobile Legends",
         currency: "Diamond",
         icon: "fas fa-diamond",
-        color: "#FF6B6B",
+        color: "#ff6b6b",
         nominals: [
             { amount: "86 Diamond", price: 20000, bonus: "" },
             { amount: "172 Diamond", price: 40000, bonus: "+14 Diamond" },
@@ -18,7 +18,7 @@ const gameData = {
         name: "Free Fire",
         currency: "Diamond",
         icon: "fas fa-fire",
-        color: "#4ECDC4",
+        color: "#4ecdc4",
         nominals: [
             { amount: "70 Diamond", price: 10000, bonus: "" },
             { amount: "140 Diamond", price: 20000, bonus: "+10 Diamond" },
@@ -32,7 +32,7 @@ const gameData = {
         name: "PUBG Mobile",
         currency: "UC",
         icon: "fas fa-crosshairs",
-        color: "#45B7D1",
+        color: "#45b7d1",
         nominals: [
             { amount: "60 UC", price: 15000, bonus: "" },
             { amount: "325 UC", price: 80000, bonus: "+25 UC" },
@@ -46,7 +46,7 @@ const gameData = {
         name: "Genshin Impact",
         currency: "Crystal",
         icon: "fas fa-gem",
-        color: "#96CEB4",
+        color: "#96ceb4",
         nominals: [
             { amount: "60 Crystal", price: 15000, bonus: "" },
             { amount: "330 Crystal", price: 80000, bonus: "+30 Crystal" },
@@ -59,7 +59,7 @@ const gameData = {
         name: "Valorant",
         currency: "Points",
         icon: "fas fa-bullseye",
-        color: "#F7A8B8",
+        color: "#f7a8b8",
         nominals: [
             { amount: "125 Points", price: 15000, bonus: "" },
             { amount: "420 Points", price: 50000, bonus: "" },
@@ -72,7 +72,7 @@ const gameData = {
         name: "Call of Duty Mobile",
         currency: "CP",
         icon: "fas fa-target",
-        color: "#FFE66D",
+        color: "#ffe66d",
         nominals: [
             { amount: "80 CP", price: 12000, bonus: "" },
             { amount: "420 CP", price: 60000, bonus: "" },
@@ -85,21 +85,18 @@ const gameData = {
 
 // Global State
 let currentUser = null;
-let selectedGame = null;
 
-// DOM Content Loaded
+// Initialize Application
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-// Initialize Application
 function initializeApp() {
     loadUserData();
     initializeNavigation();
     initializeGamesGrid();
     initializeAuthForms();
     initializeModals();
-    initializeScrollAnimations();
     
     console.log('GameTopup initialized successfully!');
 }
@@ -113,36 +110,25 @@ function loadUserData() {
     }
 }
 
-function saveUserData() {
-    if (currentUser) {
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    }
-}
-
 function updateUserInterface() {
-    const loginBtn = document.querySelector('.btn--login');
-    const registerBtn = document.querySelector('.btn--primary');
     const navButtons = document.querySelector('.nav__buttons');
     
-    if (currentUser) {
-        // User is logged in
-        if (navButtons) {
-            navButtons.innerHTML = `
-                <div class="user-menu">
-                    <button class="btn btn--outline" onclick="showUserMenu()">
-                        <i class="fas fa-user"></i>
-                        ${currentUser.name}
-                    </button>
-                    <div class="user-dropdown" id="userDropdown">
-                        <a href="#"><i class="fas fa-history"></i> Riwayat</a>
-                        <a href="#"><i class="fas fa-wallet"></i> Saldo: Rp ${currentUser.balance?.toLocaleString() || '0'}</a>
-                        <a href="#"><i class="fas fa-cog"></i> Pengaturan</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
+    if (currentUser && navButtons) {
+        navButtons.innerHTML = `
+            <div class="user-menu">
+                <button class="btn btn--outline" onclick="showUserMenu()">
+                    <i class="fas fa-user"></i>
+                    ${currentUser.name}
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#"><i class="fas fa-history"></i> Riwayat</a>
+                    <a href="#"><i class="fas fa-wallet"></i> Saldo: Rp ${currentUser.balance?.toLocaleString() || '0'}</a>
+                    <a href="#"><i class="fas fa-cog"></i> Pengaturan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" onclick="logout()" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
-            `;
-        }
+            </div>
+        `;
     }
 }
 
@@ -163,9 +149,13 @@ function initializeNavigation() {
     document.querySelectorAll('.nav__link').forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active');
-                navToggle.querySelector('i').classList.add('fa-bars');
-                navToggle.querySelector('i').classList.remove('fa-times');
+                const navMenu = document.getElementById('nav-menu');
+                const navToggle = document.getElementById('nav-toggle');
+                if (navMenu) navMenu.classList.remove('active');
+                if (navToggle) {
+                    navToggle.querySelector('i').classList.add('fa-bars');
+                    navToggle.querySelector('i').classList.remove('fa-times');
+                }
             }
         });
     });
@@ -173,7 +163,7 @@ function initializeNavigation() {
 
 // Games Grid
 function initializeGamesGrid() {
-    const gamesGrid = document.querySelector('.games__grid');
+    const gamesGrid = document.getElementById('gamesGrid');
     if (!gamesGrid) return;
     
     const popularGames = ['mlbb', 'freefire', 'pubg', 'genshin', 'valorant', 'codm'];
@@ -183,22 +173,22 @@ function initializeGamesGrid() {
         const lowestPrice = game.nominals[0].price.toLocaleString();
         
         return `
-            <div class="game__card" onclick="selectGame('${gameId}')">
-                ${gameId === 'mlbb' ? '<div class="game__badge"><i class="fas fa-fire"></i> Paling Laris</div>' : ''}
-                <div class="game__header">
-                    <div class="game__icon" style="background: ${game.color}">
+            <div class="game-card" onclick="selectGame('${gameId}')">
+                ${gameId === 'mlbb' ? '<div class="game-badge"><i class="fas fa-fire"></i> Paling Laris</div>' : ''}
+                <div class="game-header">
+                    <div class="game-icon ${gameId}" style="background: ${game.color}">
                         <i class="${game.icon}"></i>
                     </div>
-                    <div class="game__info">
+                    <div class="game-info">
                         <h3>${game.name}</h3>
                         <p>${game.currency}</p>
                     </div>
                 </div>
-                <div class="game__features">
-                    <span class="game__feature"><i class="fas fa-bolt"></i> Instant</span>
-                    <span class="game__feature"><i class="fas fa-gift"></i> Bonus</span>
+                <div class="game-features">
+                    <span class="game-feature"><i class="fas fa-bolt"></i> Instant</span>
+                    <span class="game-feature"><i class="fas fa-gift"></i> Bonus</span>
                 </div>
-                <div class="game__price">Mulai Rp ${lowestPrice}</div>
+                <div class="game-price">Mulai Rp ${lowestPrice}</div>
             </div>
         `;
     }).join('');
@@ -212,23 +202,12 @@ function selectGame(gameId) {
         return;
     }
     
-    selectedGame = gameId;
-    localStorage.setItem('selectedGame', gameId);
+    const game = gameData[gameId];
+    showNotification(`Memulai top up ${game.name}`, 'success');
     
-    // Add selection animation
-    const gameCard = document.querySelector(`[onclick="selectGame('${gameId}')"]`);
-    if (gameCard) {
-        gameCard.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            gameCard.style.transform = 'scale(1)';
-        }, 150);
-    }
-    
-    // Redirect to topup page (you can create topup.html)
-    showNotification(`Memulai top up ${gameData[gameId].name}`, 'success');
+    // Simulate loading
     setTimeout(() => {
-        // window.location.href = 'topup.html';
-        showNotification('Halaman top up sedang dikembangkan', 'info');
+        showNotification('Fitur top up sedang dikembangkan', 'info');
     }, 1000);
 }
 
@@ -253,29 +232,22 @@ function handleLogin(e) {
     const email = formData.get('email');
     const password = formData.get('password');
     
-    showLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-        if (email && password) {
-            currentUser = {
-                id: 1,
-                name: 'Player Gaming',
-                email: email,
-                balance: 150000,
-                joinDate: new Date().toISOString()
-            };
-            
-            saveUserData();
-            updateUserInterface();
-            closeModal('loginModal');
-            showNotification('Login berhasil! Selamat datang kembali!', 'success');
-        } else {
-            showNotification('Email dan password harus diisi', 'error');
-        }
+    if (email && password) {
+        currentUser = {
+            id: 1,
+            name: 'Player Gaming',
+            email: email,
+            balance: 150000,
+            joinDate: new Date().toISOString()
+        };
         
-        showLoading(false);
-    }, 1500);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        updateUserInterface();
+        closeModal('loginModal');
+        showNotification('Login berhasil! Selamat datang kembali!', 'success');
+    } else {
+        showNotification('Email dan password harus diisi', 'error');
+    }
 }
 
 function handleRegister(e) {
@@ -288,43 +260,34 @@ function handleRegister(e) {
     const password = formData.get('password');
     const confirm = formData.get('confirm');
     
-    showLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-        if (name && email && username && password && confirm) {
-            if (password !== confirm) {
-                showNotification('Password dan konfirmasi password tidak cocok', 'error');
-                showLoading(false);
-                return;
-            }
-            
-            currentUser = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                username: username,
-                balance: 0,
-                joinDate: new Date().toISOString()
-            };
-            
-            saveUserData();
-            updateUserInterface();
-            closeModal('registerModal');
-            showNotification('Registrasi berhasil! Selamat bergabung!', 'success');
-        } else {
-            showNotification('Harap isi semua field dengan benar', 'error');
+    if (name && email && username && password && confirm) {
+        if (password !== confirm) {
+            showNotification('Password dan konfirmasi password tidak cocok', 'error');
+            return;
         }
         
-        showLoading(false);
-    }, 2000);
+        currentUser = {
+            id: Date.now(),
+            name: name,
+            email: email,
+            username: username,
+            balance: 0,
+            joinDate: new Date().toISOString()
+        };
+        
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        updateUserInterface();
+        closeModal('registerModal');
+        showNotification('Registrasi berhasil! Selamat bergabung!', 'success');
+    } else {
+        showNotification('Harap isi semua field dengan benar', 'error');
+    }
 }
 
 function logout() {
     currentUser = null;
     localStorage.removeItem('currentUser');
-    updateUserInterface();
-    showNotification('Logout berhasil', 'success');
+    location.reload();
 }
 
 // Modals
@@ -395,27 +358,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Scroll Animations
-function initializeScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    document.querySelectorAll('.game__card, .feature__card').forEach(el => {
-        observer.observe(el);
-    });
-}
-
 // Scroll to Section
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
@@ -432,7 +374,6 @@ function startTopup() {
         return;
     }
     
-    // Redirect to games section
     scrollToSection('games');
     showNotification('Pilih game yang ingin di-top up', 'info');
 }
@@ -440,14 +381,6 @@ function startTopup() {
 // Show All Games
 function showAllGames() {
     showNotification('Fitur daftar semua game sedang dikembangkan!', 'info');
-}
-
-// Loading
-function showLoading(show) {
-    const loading = document.getElementById('loading');
-    if (loading) {
-        loading.style.display = show ? 'flex' : 'none';
-    }
 }
 
 // Notifications
@@ -485,15 +418,6 @@ function showNotification(message, type = 'info') {
             notification.remove();
         }
     }, 5000);
-}
-
-// Utility Functions
-function formatCurrency(amount) {
-    return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0
-    }).format(amount);
 }
 
 // Export functions to global scope
