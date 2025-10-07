@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTop - Top Up Game & Voucher Game Termurah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/cs/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -43,7 +43,7 @@
     <section class="hero-banner">
         <div class="container">
             <div class="banner-content">
-                <h1>Top Up Game <span>Murah & Cepat</span></h1>
+                <h1>Top Up Game <span class="highlight">Murah & Cepat</span></h1>
                 <p>Isi diamond, koin, dan item game favoritmu dengan harga terbaik. Proses instan 24 jam!</p>
                 <div class="banner-stats">
                     <div class="stat">
@@ -59,9 +59,26 @@
                         <p>CS Support</p>
                     </div>
                 </div>
+                <div class="hero-actions">
+                    <button class="btn-primary">Top Up Sekarang</button>
+                    <button class="btn-secondary">Lihat Promo</button>
+                </div>
             </div>
             <div class="banner-image">
-                <img src="https://via.placeholder.com/400x300/6c5ce7/ffffff?text=Game+Characters" alt="Game Characters">
+                <div class="floating-game-icons">
+                    <div class="game-icon" style="animation-delay: 0s;">
+                        <img src="https://cdn.unipin.com/images/icon_product_pages/1658817763-icon-200x200_icon%20ff.jpg" alt="Free Fire">
+                    </div>
+                    <div class="game-icon" style="animation-delay: 0.5s;">
+                        <img src="https://cdn.unipin.com/images/icon_product_pages/1592228250-icon-pubgm.jpg" alt="PUBG Mobile">
+                    </div>
+                    <div class="game-icon" style="animation-delay: 1s;">
+                        <img src="https://cdn.unipin.com/images/icon_product_pages/1633599388-icon-Icon_1024.jpg" alt="COD Mobile">
+                    </div>
+                    <div class="game-icon" style="animation-delay: 1.5s;">
+                        <img src="https://cdn.unipin.com/images/icon_product_pages/1757471734-icon-96.png" alt="Genshin Impact">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -71,20 +88,32 @@
         <div class="container">
             <div class="access-grid">
                 <div class="access-item">
-                    <i class="fas fa-bolt"></i>
-                    <span>Proses Cepat</span>
+                    <div class="access-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Proses Cepat</h4>
+                    <p>Hanya 1-5 menit setelah pembayaran</p>
                 </div>
                 <div class="access-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>100% Aman</span>
+                    <div class="access-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>100% Aman</h4>
+                    <p>Garansi keamanan data dan transaksi</p>
                 </div>
                 <div class="access-item">
-                    <i class="fas fa-tags"></i>
-                    <span>Harga Murah</span>
+                    <div class="access-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h4>Harga Murah</h4>
+                    <p>Harga kompetitif dengan promo menarik</p>
                 </div>
                 <div class="access-item">
-                    <i class="fas fa-headset"></i>
-                    <span>CS 24 Jam</span>
+                    <div class="access-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>CS 24 Jam</h4>
+                    <p>Customer service siap membantu kapan saja</p>
                 </div>
             </div>
         </div>
@@ -118,21 +147,30 @@
             </div>
             <div class="process-steps">
                 <div class="step">
-                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <div class="step-number">1</div>
+                        <i class="fas fa-gamepad"></i>
+                    </div>
                     <div class="step-content">
                         <h3>Pilih Game & Nominal</h3>
                         <p>Cari game favoritmu dan pilih jumlah diamond/koin yang diinginkan</p>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <div class="step-number">2</div>
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
                     <div class="step-content">
                         <h3>Bayar</h3>
                         <p>Pilih metode pembayaran dan lakukan pembayaran</p>
                     </div>
                 </div>
                 <div class="step">
-                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <div class="step-number">3</div>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
                     <div class="step-content">
                         <h3>Dapatkan Item</h3>
                         <p>Item akan langsung masuk ke akun game kamu dalam 1-5 menit</p>
@@ -230,8 +268,9 @@
     <section class="promo-banner">
         <div class="container">
             <div class="promo-content">
+                <div class="promo-badge">HOT PROMO</div>
                 <h2>Diskon 20% untuk Pembelian Pertama!</h2>
-                <p>Gunakan kode: <strong>WELCOME20</strong></p>
+                <p>Gunakan kode: <strong class="promo-code">WELCOME20</strong></p>
                 <button class="btn-promo">Lihat Semua Promo</button>
             </div>
         </div>
@@ -295,7 +334,7 @@
                 <div class="order-summary">
                     <h4>Ringkasan Pesanan</h4>
                     <div class="summary-item">
-                        <span>Mobile Legends</span>
+                        <span id="gameName">Mobile Legends</span>
                         <span>Rp 50.000</span>
                     </div>
                     <div class="summary-item">
