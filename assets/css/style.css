@@ -203,14 +203,18 @@ body {
     display: flex;
     margin-bottom: 2rem;
     max-width: 500px;
+    background: white;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .search-box input {
     flex: 1;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border: none;
-    border-radius: 5px 0 0 5px;
     font-size: 1rem;
+    outline: none;
 }
 
 .search-box button {
@@ -218,7 +222,6 @@ body {
     color: white;
     border: none;
     padding: 0 1.5rem;
-    border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: var(--transition);
 }
@@ -244,7 +247,7 @@ body {
 .hero-image {
     flex: 1;
     position: relative;
-    height: 400px;
+    height: 500px;
     animation: fadeInRight 1s ease;
 }
 
@@ -259,8 +262,63 @@ body {
     }
 }
 
-.floating-card {
+.character {
     position: absolute;
+    text-align: center;
+    transition: var(--transition);
+    animation: float 3s ease-in-out infinite;
+}
+
+.character:hover {
+    transform: translateY(-10px);
+}
+
+.character img {
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.character-info {
+    margin-top: 1rem;
+    background: rgba(255,255,255,0.1);
+    padding: 0.5rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.character-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.character-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.character-1 {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.character-2 {
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 0.5s;
+}
+
+.game-cards {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.game-card-small {
     background: white;
     border-radius: 10px;
     padding: 1rem;
@@ -273,41 +331,18 @@ body {
     animation: float 3s ease-in-out infinite;
 }
 
-.floating-card:hover {
-    transform: translateY(-10px);
+.game-card-small:hover {
+    transform: translateY(-5px);
 }
 
-.floating-card img {
+.game-card-small img {
     border-radius: 5px;
     margin-bottom: 0.5rem;
 }
 
-.floating-card p {
+.game-card-small p {
     font-weight: 600;
-}
-
-.card-1 {
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.card-2 {
-    top: 5%;
-    right: 20%;
-    animation-delay: 0.5s;
-}
-
-.card-3 {
-    bottom: 20%;
-    left: 5%;
-    animation-delay: 1s;
-}
-
-.card-4 {
-    bottom: 10%;
-    right: 10%;
-    animation-delay: 1.5s;
+    font-size: 0.9rem;
 }
 
 @keyframes float {
@@ -715,6 +750,18 @@ body {
     .promo-content {
         margin-bottom: 3rem;
     }
+    
+    .character {
+        display: none;
+    }
+    
+    .game-cards {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -763,7 +810,7 @@ body {
         font-size: 2.5rem;
     }
     
-    .floating-card {
-        display: none;
+    .hero-image {
+        height: 300px;
     }
 }
