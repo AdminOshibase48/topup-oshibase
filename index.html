@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameTop - Top Up Game Online</title>
+    <title>GameTop - Top Up Game & Voucher Game Termurah</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -13,18 +13,22 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <h2>Game<span>Top</span></h2>
+                    <img src="https://via.placeholder.com/150x40/6c5ce7/ffffff?text=GameTop" alt="GameTop">
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#" class="nav-link">Beranda</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Game</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Beranda</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Top Up</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Voucher</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Promo</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Bantuan</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="btn-login">Masuk</button>
+                    <button class="btn-login"><i class="fas fa-user"></i> Masuk</button>
                     <button class="btn-register">Daftar</button>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
                 </div>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -35,63 +39,52 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Banner -->
+    <section class="hero-banner">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Top Up Game <span>Mudah & Cepat</span></h1>
-                <p class="hero-description">Dapatkan koin, diamond, dan item game favorit Anda dengan proses instan dan aman.</p>
-                <div class="search-box">
-                    <input type="text" placeholder="Cari game...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="hero-stats">
+            <div class="banner-content">
+                <h1>Top Up Game <span>Murah & Cepat</span></h1>
+                <p>Isi diamond, koin, dan item game favoritmu dengan harga terbaik. Proses instan 24 jam!</p>
+                <div class="banner-stats">
+                    <div class="stat">
+                        <h3>2 Juta+</h3>
+                        <p>Player Trusted</p>
+                    </div>
                     <div class="stat">
                         <h3>500+</h3>
                         <p>Game Tersedia</p>
                     </div>
                     <div class="stat">
-                        <h3>2 Juta+</h3>
-                        <p>Pengguna</p>
-                    </div>
-                    <div class="stat">
                         <h3>24/7</h3>
-                        <p>Layanan</p>
+                        <p>CS Support</p>
                     </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="character character-1">
-                    <img src="https://via.placeholder.com/200x300/fd79a8/ffffff?text=Barbara" alt="Barbara">
-                    <div class="character-info">
-                        <h4>Barbara</h4>
-                        <p>Support Character</p>
-                    </div>
+            <div class="banner-image">
+                <img src="https://via.placeholder.com/400x300/6c5ce7/ffffff?text=Game+Characters" alt="Game Characters">
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access -->
+    <section class="quick-access">
+        <div class="container">
+            <div class="access-grid">
+                <div class="access-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Proses Cepat</span>
                 </div>
-                <div class="character character-2">
-                    <img src="https://via.placeholder.com/200x300/74b9ff/ffffff?text=Bernard" alt="Bernard">
-                    <div class="character-info">
-                        <h4>Bernard</h4>
-                        <p>Tank Character</p>
-                    </div>
+                <div class="access-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Aman</span>
                 </div>
-                <div class="game-cards">
-                    <div class="game-card-small">
-                        <img src="https://via.placeholder.com/120x60/6c5ce7/ffffff?text=ML" alt="Mobile Legend">
-                        <p>Mobile Legend</p>
-                    </div>
-                    <div class="game-card-small">
-                        <img src="https://via.placeholder.com/120x60/e84393/ffffff?text=FF" alt="Free Fire">
-                        <p>Free Fire</p>
-                    </div>
-                    <div class="game-card-small">
-                        <img src="https://via.placeholder.com/120x60/00b894/ffffff?text=GI" alt="Genshin Impact">
-                        <p>Genshin Impact</p>
-                    </div>
-                    <div class="game-card-small">
-                        <img src="https://via.placeholder.com/120x60/0984e3/ffffff?text=VAL" alt="Valorant">
-                        <p>Valorant</p>
-                    </div>
+                <div class="access-item">
+                    <i class="fas fa-tags"></i>
+                    <span>Harga Murah</span>
+                </div>
+                <div class="access-item">
+                    <i class="fas fa-headset"></i>
+                    <span>CS 24 Jam</span>
                 </div>
             </div>
         </div>
@@ -102,7 +95,13 @@
         <div class="container">
             <div class="section-header">
                 <h2>Game Populer</h2>
-                <p>Pilih dari ratusan game terpopuler</p>
+                <p>Pilih game favoritmu dan top up sekarang!</p>
+            </div>
+            <div class="games-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="pc">PC</button>
+                <button class="filter-btn" data-filter="console">Console</button>
             </div>
             <div class="games-grid">
                 <!-- Game cards will be generated by JavaScript -->
@@ -110,53 +109,130 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
+    <!-- Top Up Process -->
+    <section class="topup-process">
         <div class="container">
             <div class="section-header">
                 <h2>Cara Top Up</h2>
-                <p>Hanya butuh 3 langkah mudah</p>
+                <p>Hanya 3 langkah mudah untuk top up game</p>
             </div>
-            <div class="steps">
+            <div class="process-steps">
                 <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-gamepad"></i>
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Pilih Game & Nominal</h3>
+                        <p>Cari game favoritmu dan pilih jumlah diamond/koin yang diinginkan</p>
                     </div>
-                    <h3>Pilih Game</h3>
-                    <p>Cari dan pilih game favorit Anda</p>
                 </div>
                 <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-money-bill-wave"></i>
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Bayar</h3>
+                        <p>Pilih metode pembayaran dan lakukan pembayaran</p>
                     </div>
-                    <h3>Pilih Nominal</h3>
-                    <p>Tentukan jumlah yang ingin diisi</p>
                 </div>
                 <div class="step">
-                    <div class="step-icon">
-                        <i class="fas fa-check-circle"></i>
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Dapatkan Item</h3>
+                        <p>Item akan langsung masuk ke akun game kamu dalam 1-5 menit</p>
                     </div>
-                    <h3>Konfirmasi</h3>
-                    <p>Bayar dan dapatkan item secara instan</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Promo Section -->
-    <section class="promo-section">
+    <!-- Payment Methods -->
+    <section class="payment-methods">
+        <div class="container">
+            <div class="section-header">
+                <h2>Metode Pembayaran</h2>
+                <p>Bayar dengan metode yang paling nyaman untukmu</p>
+            </div>
+            <div class="payment-grid">
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/3498db/ffffff?text=BCA" alt="BCA">
+                    <span>Transfer Bank</span>
+                </div>
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/e74c3c/ffffff?text=GOPAY" alt="Gopay">
+                    <span>E-Wallet</span>
+                </div>
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/2ecc71/ffffff?text=OVO" alt="OVO">
+                    <span>OVO</span>
+                </div>
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/9b59b6/ffffff?text=DANA" alt="DANA">
+                    <span>DANA</span>
+                </div>
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/f39c12/ffffff?text=QRIS" alt="QRIS">
+                    <span>QRIS</span>
+                </div>
+                <div class="payment-item">
+                    <img src="https://via.placeholder.com/60x40/34495e/ffffff?text=ALFM" alt="Alfamart">
+                    <span>Alfamart</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pertanyaan Umum</h2>
+                <p>Temukan jawaban untuk pertanyaan yang sering diajukan</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Berapa lama proses top up?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Proses top up biasanya memakan waktu 1-5 menit setelah pembayaran berhasil. Untuk pembayaran via transfer bank, proses bisa memakan waktu hingga 15 menit.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana jika pembayaran gagal?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Jika pembayaran gagal, dana akan dikembalikan secara otomatis dalam 1-2 jam. Jika tidak, hubungi customer service kami untuk bantuan lebih lanjut.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah data saya aman?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, kami menggunakan enkripsi SSL untuk melindungi semua data transaksi dan informasi pribadi Anda. Kami tidak pernah membagikan data kepada pihak ketiga.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bisa top up untuk server luar negeri?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, kami mendukung top up untuk berbagai server termasuk Asia, Global, dan lainnya. Pastikan memilih server yang tepat saat melakukan top up.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
         <div class="container">
             <div class="promo-content">
-                <h2>Dapatkan Promo Spesial Hari Ini!</h2>
-                <p>Diskon hingga 20% untuk pembelian pertama</p>
-                <button class="btn-promo">Lihat Promo</button>
-            </div>
-            <div class="promo-image">
-                <div class="promo-card">
-                    <div class="promo-badge">HOT</div>
-                    <h3>Bonus 10%</h3>
-                    <p>Untuk top up pertama</p>
-                </div>
+                <h2>Diskon 20% untuk Pembelian Pertama!</h2>
+                <p>Gunakan kode: <strong>WELCOME20</strong></p>
+                <button class="btn-promo">Lihat Semua Promo</button>
             </div>
         </div>
     </section>
@@ -167,7 +243,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>GameTop</h3>
-                    <p>Platform top up game terpercaya dengan proses cepat dan aman.</p>
+                    <p>Platform top up game terpercaya dengan proses cepat dan aman. Melayani jutaan gamers di Indonesia.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -208,9 +284,67 @@
         </div>
     </footer>
 
-    <!-- Loading Animation -->
-    <div class="loading">
-        <div class="loader"></div>
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lanjutkan Pembayaran</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary">
+                    <h4>Ringkasan Pesanan</h4>
+                    <div class="summary-item">
+                        <span>Mobile Legends</span>
+                        <span>Rp 50.000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Biaya Admin</span>
+                        <span>Rp 1.000</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <span>Rp 51.000</span>
+                    </div>
+                </div>
+                <div class="payment-options">
+                    <h4>Pilih Metode Pembayaran</h4>
+                    <div class="payment-option">
+                        <input type="radio" id="bca" name="payment" checked>
+                        <label for="bca">
+                            <img src="https://via.placeholder.com/40x25/3498db/ffffff?text=BCA" alt="BCA">
+                            <span>Transfer Bank BCA</span>
+                        </label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="gopay" name="payment">
+                        <label for="gopay">
+                            <img src="https://via.placeholder.com/40x25/e74c3c/ffffff?text=GOPAY" alt="Gopay">
+                            <span>Gopay</span>
+                        </label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="ovo" name="payment">
+                        <label for="ovo">
+                            <img src="https://via.placeholder.com/40x25/2ecc71/ffffff?text=OVO" alt="OVO">
+                            <span>OVO</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn-pay">Bayar Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="notification" id="successNotification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <div class="notification-text">
+                <h4>Pembayaran Berhasil!</h4>
+                <p>Item akan dikirim dalam 1-5 menit</p>
+            </div>
+        </div>
     </div>
 
     <script src="assets/js/script.js"></script>
